@@ -23,4 +23,5 @@
 <ul>
     <li>Add reactions functionality</li>
     <li>Add commenting features</li>
+    <li>Dockerize the application</li>
 </ul>
