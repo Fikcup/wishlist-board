@@ -47,6 +47,18 @@ const userController = {
                 res.status(500).json(err);
             });
     },
+    deleteUser(req, res) {
+        User.findOneAndDelete(
+            { _id: req.params.userId }
+        )
+            .then((userData) => {
+                res.json(userData);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    },
 };
 
 module.exports = userController;
