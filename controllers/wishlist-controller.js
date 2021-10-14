@@ -11,6 +11,20 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    createWish(req, res) {
+        Wishlist.findOneAndUpdate(
+            { _id: req.params.wishlistId },
+            { $addToSet: { wishes: req.body } },
+            { runValidators: true, new: true }
+        )
+            .then((wishlistData) => {
+                res.json(wishlistData);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    },
 };
 
 module.exports = wishlistController;
