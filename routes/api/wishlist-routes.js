@@ -3,6 +3,7 @@ const {
     getAllWishlists,
     getOneWishlist,
     createWishlist,
+    updateWishlist,
     createWish,
 } = require('../../controllers/wishlist-controller');
 
@@ -10,7 +11,7 @@ const {
 router.route('/').get(getAllWishlists).post(createWishlist);
 
 // route /api/wishlists/:wishlistId
-router.route('/:wishlistId').get(getOneWishlist);
+router.route('/:wishlistId').get(getOneWishlist).put(updateWishlist);
 
 // route /api/wishlists/:wishlistId/wish
 router.route('/:wishlistId/wish').post(createWish);

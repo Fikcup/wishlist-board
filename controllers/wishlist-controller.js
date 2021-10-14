@@ -37,6 +37,24 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    updateWishlist(req, res) {
+        Wishlist.findOneAndUpdate(
+            { _id: req.params.wishlistId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+            .then((wishlistData) => {
+                if(!wishlistData) {
+                    return res.status(404).json({ message: 'No wishlist with this id exists!' })
+                }
+
+                res.json(wishlistData);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    },
     createWish(req, res) {
         Wishlist.findOneAndUpdate(
             { _id: req.params.wishlistId },
