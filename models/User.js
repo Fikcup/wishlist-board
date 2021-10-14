@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { Wishlist } = require('./Wishlist');
 
 const userSchema = new Schema(
     {
@@ -30,8 +31,19 @@ const userSchema = new Schema(
             minlength: 1,
             maxlength: 50,
         },
+        wishlists: [Wishlist],
+    },
+    {
+        toJSON: {
+            virtuals: true
+        },
+        id: false,
     }
 );
+
+userSchema.virtual('wishlists').get(function() {
+    return this.wishlists.legnth;
+});
 
 const User = model('User', userSchema);
 
