@@ -1,4 +1,4 @@
-const { Wishlist } = require('../models');
+const { Wishlist, Wish } = require('../models');
 
 const wishlistController = {
     getAllWishlists(req, res) {
@@ -49,6 +49,22 @@ const wishlistController = {
                 }
 
                 res.json(wishlistData);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    },
+    deleteWishlist(req, res) {
+        Wishlist.findOneAndDelete(
+            { _id: req.params.wishlistId },
+        )
+            .then((wishlistData) => {
+                if(!wishlistData) {
+                    return res.status(404).json({ message: 'No wishlist with this id exists!' })
+                }
+
+                res.json({ message: 'Wishlist has been deleted!' });
             })
             .catch((err) => {
                 console.log(err);
