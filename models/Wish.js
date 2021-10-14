@@ -1,4 +1,4 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 
 const wishSchema = new Schema(
     {
@@ -15,13 +15,7 @@ const wishSchema = new Schema(
             type: Date,
             default: () => Date.now(),
         },
-    },
-    {
-        toJSON: {
-            getters: true
-        },
-        id: false
-    },
+    }
 );
 
 const Wish = model('Wish', wishSchema);
