@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const wishSchema = require('./Wish');
+const Wish = require('./Wish');
 
 const wishlistSchema = new Schema(
     {
@@ -17,7 +17,7 @@ const wishlistSchema = new Schema(
             type: Date,
             default: Date.now,
         },
-        wishes: [wishSchema]
+        wishes: [Wish]
     },
     {
         toJSON: {
