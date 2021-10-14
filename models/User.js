@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 const { Wishlist } = require('./Wishlist');
 
 const userSchema = new Schema(
