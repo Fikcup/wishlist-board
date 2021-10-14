@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const wishSchema = new Schema(
     {
@@ -22,6 +22,8 @@ const wishSchema = new Schema(
         },
         id: false
     },
-)
+);
 
-module.exports = wishSchema;
+const Wish = model('Wish', wishSchema);
+
+module.exports = Wish;
