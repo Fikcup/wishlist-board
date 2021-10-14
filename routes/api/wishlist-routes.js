@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {
     getAllWishlists,
+    getOneWishlist,
     createWishlist,
     createWish,
 } = require('../../controllers/wishlist-controller');
@@ -9,7 +10,7 @@ const {
 router.route('/').get(getAllWishlists).post(createWishlist);
 
 // route /api/wishlists/:wishlistId
-router.route('/:wishlistId');
+router.route('/:wishlistId').get(getOneWishlist);
 
 // route /api/wishlists/:wishlistId/wish
 router.route('/:wishlistId/wish').post(createWish);
