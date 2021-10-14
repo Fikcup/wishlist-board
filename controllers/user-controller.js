@@ -12,6 +12,17 @@ const userController = {
                 res.status(500).json(err);
             });
     },
+    getOneUser(req, res) {
+        User.findOne()
+            .select('-__v')
+            .then((userData) => {
+                res.json(userData);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    },
     createUser(req, res) {
         User.create(req.body)
             .then((userData) => {
