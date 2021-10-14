@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const wishSchema = require('./Wish');
 
 const wishlistSchema = new Schema(
     {
@@ -16,14 +17,19 @@ const wishlistSchema = new Schema(
             type: Date,
             default: Date.now,
         },
-        wishes: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Wish',
-            }
-        ],
+        wishes: [wishSchema],
     },
+    {
+        toJSON: {
+            virtuals: true
+        },
+        id: false,
+    }
 );
+
+wishlistSchema.virtual('wishCount').get(function() {
+    return this.wishes.length;
+});
 
 const Wishlist = model('Wishlist', wishlistSchema);
 
