@@ -24,4 +24,4 @@ const wishSchema = new Schema(
     }
 );
 
-module.exports = wishController;
+module.exports = wishSchema;
