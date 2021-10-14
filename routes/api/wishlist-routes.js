@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const {
-
+    createWishlist,
 } = require('../../controllers/wishlist-controller');
 
 // route /api/wishlists
-router.route('/');
+router.route('/').post(createWishlist);
 
 // route /api/wishlists/:wishlistId
 router.route('/:wishlistId');
