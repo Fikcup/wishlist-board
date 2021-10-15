@@ -1,4 +1,4 @@
-const { Wishlist, Wish } = require('../models');
+const { Wishlist } = require('../models');
 
 const wishlistController = {
     getAllWishlists(req, res) {
