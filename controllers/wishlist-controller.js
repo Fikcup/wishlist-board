@@ -1,6 +1,7 @@
 const { Wishlist } = require('../models');
 
 const wishlistController = {
+    // Users can view all created wishlists
     getAllWishlists(req, res) {
         Wishlist.find()
             .select('-__v')
@@ -12,6 +13,7 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    // Users can find a specific wishlist by searching associated data
     getOneWishlist(req, res) {
         Wishlist.findOne()
             .select('-__v')
@@ -27,6 +29,7 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    // Users can create multiple wishlists for their account
     createWishlist(req, res) {
         Wishlist.create(req.body)
             .then((wishlistData) => {
@@ -37,6 +40,7 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    // Users can update wishlist title
     updateWishlist(req, res) {
         Wishlist.findOneAndUpdate(
             { _id: req.params.wishlistId },
@@ -55,6 +59,7 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    // Users can delete their own wishlists
     deleteWishlist(req, res) {
         Wishlist.findOneAndDelete(
             { _id: req.params.wishlistId },
@@ -71,6 +76,7 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    // Users can add wishes to their wishlist
     createWish(req, res) {
         Wishlist.findOneAndUpdate(
             { _id: req.params.wishlistId },
@@ -85,6 +91,7 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    // Users can remove wishes from their wishlist
     deleteWish(req, res) {
         Wishlist.findOneAndUpdate(
             { _id: req.params.wishlistId },
