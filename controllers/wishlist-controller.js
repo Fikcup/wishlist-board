@@ -85,6 +85,20 @@ const wishlistController = {
                 res.status(500).json(err);
             });
     },
+    deleteWish(req, res) {
+        Wishlist.findOneAndUpdate(
+            { _id: req.params.wishlistId },
+            { $pull: { wishes: { wishId: req.params.wishId } } },
+            { runValidators: true, new: true }
+        )
+            .then((wishlistData) => {
+                res.json(wishlistData);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    },
 };
 
 module.exports = wishlistController;

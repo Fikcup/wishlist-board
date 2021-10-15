@@ -6,6 +6,7 @@ const {
     updateWishlist,
     deleteWishlist,
     createWish,
+    deleteWish,
 } = require('../../controllers/wishlist-controller');
 
 // route /api/wishlists
@@ -16,5 +17,8 @@ router.route('/:wishlistId').get(getOneWishlist).put(updateWishlist).delete(dele
 
 // route /api/wishlists/:wishlistId/wish
 router.route('/:wishlistId/wish').post(createWish);
+
+// route /api/wishlists/:wishlistId/wish/:wishId
+router.route('/:wishlistId/wish/:wishId').delete(deleteWish);
 
 module.exports = router;
