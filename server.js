@@ -1,8 +1,10 @@
 const express = require('express');
-const db = require('./config/connection');
-const routes = require('./routes');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const favicon = require('serve-favicon');
+
+const db = require('./config/connection');
+const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,6 +19,9 @@ app.engine('.handlebars', exphbs({
 // tell the app what folder our views is going to be in  
 app.set('view engine', '.handlebars');
 app.set('views', path.join(__dirname, '/views'));
+
+// set favicon
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(express.json());
 app.use(express.urlencoded({
