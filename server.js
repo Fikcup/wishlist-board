@@ -6,12 +6,14 @@ const exphbs = require('express-handlebars');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
 // set the handlebars engine
 app.engine('.handlebars', exphbs({
     defaultLayout: 'main',
     extname: '.handlebars',
     layoutsDir: path.join(__dirname, 'views/layouts')
-  }));
+}));
+
 // tell the app what folder our views is going to be in  
 app.set('view engine', '.handlebars');
 app.set('views', path.join(__dirname, '/views'));
@@ -22,9 +24,9 @@ app.use(express.urlencoded({
 }));
 
 // test route for the root route
-app.get("/", function(req,res){
+app.get("/", function(req, res) {
     res.render("all-wishes")
-})
+});
 
 app.use(routes);
 
