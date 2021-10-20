@@ -4,23 +4,13 @@
 
 ## Instructions
 
-### Basic
-<ul>
-    <li>Make wishes</li>
-    <li>Have wishes display to all</li>
-    <li>Connect templating engine to express</li>
-    <li>Route to different pages</li>
-</ul>
+### Next Steps
 
-### Moderate
 <ul>
+    <li>Route to different pages</li>
     <li>Implement user auth</li>
     <li>Only users can create wishes</li>
     <li>Dashboard with all of your wishes</li>
-</ul>
-
-### Advanced
-<ul>
     <li>Add reactions functionality</li>
     <li>Add commenting features</li>
     <li>Dockerize the application</li>
