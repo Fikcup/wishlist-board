@@ -9,6 +9,9 @@ const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// public directory
+app.use(express.static('public'));
+
 // set the handlebars engine
 app.engine('.handlebars', exphbs({
     defaultLayout: 'main',
