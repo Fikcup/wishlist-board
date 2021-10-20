@@ -30,7 +30,7 @@ app.use(express.urlencoded({
 
 // test route for the root route
 app.get("/", function(req, res) {
-    res.render("all-wishes")
+    res.render("partials/all-wishes")
 });
 
 app.use(routes);
