@@ -1,0 +1,26 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: bisque;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+
+nav ul li {
+    padding: 10px 35px;
+    display: block;
+    font-size: 1.25rem;
+}
+
+nav ul li:hover {
+    background-color: azure;
+    line-height: 1.25rem;
+}
