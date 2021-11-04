@@ -1,0 +1,17 @@
+<div class="wish-new">
+    <div class="wish-header">
+        <h2>New wish</h2>
+    </div>
+
+    <form id="new-wish-form">
+        <input type="hidden" name="wish-id" value={{wish.id}}>
+
+        <label class="wish-label" for="wish-title">Name</label>
+        <input type="text" name="wish-title" value={{wish.title}} class="wish-input" />
+
+        <label class="wish-label" for="wish-text">Description</label>
+        <textarea name="wish-text" value={{wish.wishText}} class="wish-input"></textarea>
+
+        <button type="submit" class="wish-btn">Create</button>
+    </form>
+</div>
