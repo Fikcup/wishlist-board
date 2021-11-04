@@ -8,7 +8,8 @@
 
 <ul>
     <li>Route to different pages</li>
-    <li>Implement user auth</li>
+    <li>Implement user auth with JSON web tokens</li>
+    <li>Encrypt user password with bcrypt</li>
     <li>Only users can create wishes</li>
     <li>Dashboard with all of your wishes</li>
     <li>Add reactions functionality</li>
