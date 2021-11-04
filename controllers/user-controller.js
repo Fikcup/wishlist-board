@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const bcrypt = require('bcrypt');
 
 const userController = {
     // Users can find other registered users
@@ -27,7 +28,14 @@ const userController = {
     },
     // Users can sign up for an account
     createUser(req, res) {
-        User.create(req.body)
+        var hashedPassword = bcrypt.hashSync(req.body.userPassword, 10);
+
+        User.create({
+            username: req.body.username,
+            userPassword: hashedPassword,
+            userFirst: req.body.userFirst,
+            userLast: req.body.userLast
+        })
             .then((userData) => {
                 res.json(userData);
             })
