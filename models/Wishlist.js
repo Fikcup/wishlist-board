@@ -3,6 +3,10 @@ const wishSchema = require('./Wish');
 
 const wishlistSchema = new Schema(
     {
+        id: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId(),
+        },
         title: {
             type: String,
             required: true,
