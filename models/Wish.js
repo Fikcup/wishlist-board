@@ -6,6 +6,12 @@ const wishSchema = new Schema(
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId(),
         },
+        title: {
+            type: String,
+            required: true,
+            minlength: 1,
+            maxlength: 30,
+        },
         wishText: {
             type: String,
             require: true,
