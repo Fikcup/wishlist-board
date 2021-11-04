@@ -1,8 +1,8 @@
 <div class="wishes">
-    {{#each wishes}}
+    {{#each wishes as |wish|}}
     <article class="wish">
         <h2>
-            <a href="/post/{{id}}">{{title}}</a>
+            <a href="/post/{{Wish.id}}">{{Wish.title}}</a>
         </h2>
         <div>
             Posted by {{User.username}}
