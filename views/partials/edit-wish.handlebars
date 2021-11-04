@@ -1,0 +1,18 @@
+<div class="wish-edit">
+    <div class="wish-header">
+        <h2>Edit wish</h2>
+    </div>
+
+    <form id="edit-wish-form">
+        <input type="hidden" name="wish-id" value={{wish.id}}>
+
+        <label class="wish-label" for="wish-title">Name</label>
+        <input type="text" name="wish-title" value={{wish.title}} class="wish-input" />
+
+        <label class="wish-label" for="wish-text">Description</label>
+        <input type="text" name="wish-text" value={{wish.wishText}} class="wish-input" />
+
+        <button type="submit" class="wish-btn">Update</button>
+        <button type="submit" class="wish-btn delete-btn">Delete</button>
+    </form>
+</div>
