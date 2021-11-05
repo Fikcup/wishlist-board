@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
 
 router.get('/login', (req, res) => {
     if (authMiddleware.jwtAuth) {
@@ -31,6 +31,6 @@ router.get('/signup', (req, res) => {
     }
 
     res.render('partials/signup');
-})
+});
 
 module.exports = router;
