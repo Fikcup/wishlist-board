@@ -9,6 +9,6 @@
 <ul>
     <li>Destroy/unassign jwt token on logout</li>
     <li>Dashboard with all of your wishlists</li>
-    <li>Dockerize the application</li>
+    <li>Display all wishes on a wishlist</li>
     <li>Deploy to Heroku</li>
 </ul>
