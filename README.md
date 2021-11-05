@@ -9,7 +9,6 @@
 <ul>
     <li>Route to different pages</li>
     <li>Dashboard with all of your wishes</li>
-    <li>Add reactions functionality</li>
     <li>Dockerize the application</li>
     <li>Deploy to Heroku</li>
 </ul>
