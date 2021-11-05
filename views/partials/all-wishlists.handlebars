@@ -1,9 +1,9 @@
 <div class="dashboard-wishlists">
     <h1>Wishlists</h1>
-    {{#each wishlists}}
+    {{#each wishlists as |wls|}}
     <div class="user-wishlist">
-        <p class="wishlist-title"><a href="/wishlists/{{id}}">{{title}}</a></p>
-        <p class="wishlist-info"><a>{{username}}</a> on {{createdAt}}</p>
+        <p class="wishlist-title"><a href="/wishlists/{{wls._id}}">{{wls.title}}</a></p>
+        <p class="wishlist-info"><a href="/users/{{wls.username}}">{{wls.username}}</a> on {{wls.createdAt}}</p>
     </div>
     {{/each}}
 </div>
