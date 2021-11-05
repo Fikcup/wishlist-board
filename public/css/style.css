@@ -24,3 +24,7 @@ nav ul li:hover {
     background-color: azure;
     line-height: 1.25rem;
 }
+
+.dashboard-wishlists {
+    margin-top: 150px;
+}
