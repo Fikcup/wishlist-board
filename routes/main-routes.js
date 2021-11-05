@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+    // TODO: fix auth statement to check for
     if (authMiddleware.jwtAuth) {
         res.redirect('/');
         return;
