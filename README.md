@@ -7,8 +7,8 @@
 ### Next Steps
 
 <ul>
-    <li>Route to different pages</li>
-    <li>Dashboard with all of your wishes</li>
+    <li>Destroy/unassign jwt token on logout</li>
+    <li>Dashboard with all of your wishlists</li>
     <li>Dockerize the application</li>
     <li>Deploy to Heroku</li>
 </ul>
