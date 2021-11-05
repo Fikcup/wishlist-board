@@ -1,5 +1,7 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const authMiddleware = require('../middleware/auth');
 
 const userController = {
     // Users can find other registered users
@@ -37,7 +39,10 @@ const userController = {
             userLast: req.body.userLast
         })
             .then((userData) => {
-                res.json(userData);
+                var token = jwt.sign({ id: userData._id }, authMiddleware.secret, {
+                    expiresIn: 86400
+                });
+                res.status(200).send({ auth: true, token: token});
             })
             .catch((err) => {
                 console.log(err);
