@@ -18,6 +18,7 @@ const userSchema = new Schema(
             require: true,
             minlength: 8,
             maxlength: 128,
+            select: false,
         },
         userFirst: {
             type: String,
