@@ -1,5 +1,19 @@
 const router = require('express').Router();
 const authMiddleware = require('../middleware/auth');
+const { Wishlist } = require('../models');
+
+router.get('/', async (req, res) => {
+    try {
+        const wishlistData = await Wishlist.find().lean();
+        const wishlists = wishlistData.map((wishlist) => {
+            return wishlist;
+        });
+
+        res.render('partials/all-wishlists', { wishlists });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
 
 router.get('/login', (req, res) => {
     if (authMiddleware.jwtAuth) {

@@ -1,8 +1,9 @@
 <div class="dashboard-wishlists">
-    {{#each wishlist}}
+    <h1>Wishlists</h1>
+    {{#each wishlists}}
     <div class="user-wishlist">
-        <p class="wishlist-title">{{Wishlist.title}}</p>
-        <p class="wishlist-date">{{Wishlist.createdAt}}</p>
+        <p class="wishlist-title"><a href="/wishlists/{{id}}">{{title}}</a></p>
+        <p class="wishlist-info"><a>{{username}}</a> on {{createdAt}}</p>
     </div>
     {{/each}}
 </div>
