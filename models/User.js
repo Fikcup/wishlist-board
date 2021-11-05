@@ -19,7 +19,7 @@ const userSchema = new Schema(
             require: true,
             minlength: 8,
             maxlength: 128,
-            select: false,
+            
         },
         userFirst: {
             type: String,
@@ -44,6 +44,15 @@ const userSchema = new Schema(
 userSchema.pre('save', function(next) {
     let pwd = this._doc.userPassword;
     this._doc.userPassword = bcrypt.hashSync(pwd, 10);
+    next();
+});
+
+userSchema.pre('findOneAndUpdate', function(next) {
+    const modified = this.getUpdate();
+    let pwd = modified.$set.userPassword;
+    if (pwd) {
+        modified.$set.userPassword = bcrypt.hashSync(pwd, 10);
+    }
     next();
 });
 
