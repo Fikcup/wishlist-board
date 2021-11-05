@@ -31,11 +31,6 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-// test route for the root route
-app.get("/", function(req, res) {
-    res.render("partials/all-wishes")
-});
-
 app.use(routes);
 
 db.once('open', () => {
