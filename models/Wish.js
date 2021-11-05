@@ -2,7 +2,7 @@ const { Schema, Types } = require('mongoose');
 
 const wishSchema = new Schema(
     {
-        id: {
+        _id: {
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId(),
         },

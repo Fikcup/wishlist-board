@@ -3,7 +3,7 @@ const wishSchema = require('./Wish');
 
 const wishlistSchema = new Schema(
     {
-        id: {
+        _id: {
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId(),
         },
