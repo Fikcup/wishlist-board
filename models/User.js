@@ -41,6 +41,12 @@ const userSchema = new Schema(
     },
 );
 
+userSchema.pre('save', function(next) {
+    let pwd = this._doc.userPassword;
+    this._doc.userPassword = bcrypt.hashSync(pwd, 10);
+    next();
+});
+
 userSchema.methods.checkPassword = function(passwordVerify, cb) {
     bcrypt.compare(passwordVerify, this.password, function(err, isMatch) {
         if (err) return cb(err);

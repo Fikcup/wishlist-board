@@ -30,14 +30,7 @@ const userController = {
     },
     // Users can sign up for an account
     createUser(req, res) {
-        var hashedPassword = bcrypt.hashSync(req.body.userPassword, 10);
-
-        User.create({
-            username: req.body.username,
-            userPassword: hashedPassword,
-            userFirst: req.body.userFirst,
-            userLast: req.body.userLast
-        })
+        User.create(req.body)
             .then((userData) => {
                 var token = jwt.sign({ id: userData._id }, authMiddleware.secret, {
                     expiresIn: 86400
