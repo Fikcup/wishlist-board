@@ -1,0 +1,18 @@
+<div class="dashboard-wishlists">
+    <h1>Wishlists</h1>
+    <div class="user-wishlist">
+        <p class="wishlist-title"><a href="/wishlists/{{wls._id}}">{{wls.title}}</a></p>
+        <p class="wishlist-info"><a href="/users/{{wls.username}}">{{wls.username}}</a> on {{wls.createdAt}}</p>
+
+        {{#each wish as |wish|}}
+        <div class="user-wishes">
+            <p class="wish-title">{{wish.title}}</p>
+            <p class="wish-info">{{wish.wishText}}</p>
+
+            <button type="submit" class="wish-btn delete-btn">Delete</button>
+        </div>
+        {{/each}}
+
+        <button type="submit" class="wish-btn delete-btn">Delete Wishlist</button>
+    </div>
+</div>
