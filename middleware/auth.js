@@ -1,15 +1,20 @@
 require('dotenv').config();
 
 module.exports = {
-    'secret': process.env.SECRET,
-    'jwtAuth': function(req, res, next) {
-        var token = req.headers['x-access-token'];
-        if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
-            
-        jwt.verify(token, config.secret, function(err, decoded) {
-        if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-        
-        res.status(200).send(decoded);
-      })
+    secret: process.env.SECRET,
+    jwtAuth: function(req, res, next) {
+        const bearerHeader = req.headers['authorization'];
+
+        if (typeof bearerHeader !== 'undefined') {
+            const bearer = tokenHeader.split(' ');
+
+            const bearerToken = bearer[1];
+
+            req.token = bearerToken;
+
+            next();
+        } else {
+            res.sendStatus(403).json({ message: 'Your token is invalid.' });
+        }
     }
 }
