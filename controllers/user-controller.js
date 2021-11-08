@@ -32,7 +32,7 @@ const userController = {
     createUser(req, res) {
         User.create(req.body)
             .then((userData) => {
-                var token = jwt.sign({ id: userData._id }, authMiddleware.secret, {
+                var token = jwt.sign({ id: userData._id }, process.env.SECRET, {
                     expiresIn: 86400
                 });
                 res.status(200).send({ auth: true, token: token});
