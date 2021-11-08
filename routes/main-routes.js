@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const authMiddleware = require('../middleware/auth');
+const jwt = require('jsonwebtoken');
 const { Wishlist } = require('../models');
 
 router.get('/', async (req, res) => {
@@ -16,22 +17,31 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    // TODO: fix auth statement to check for
-    if (authMiddleware.jwtAuth) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('partials/login');
+    jwt.verify(req.token, process.env.SECRET, (err, authData) => {
+        if (err) {
+            res.render('partials/login');
+        } else {
+            res.json({
+                message: 'You are already logged in.',
+                authData
+            })
+            res.redirect('/');
+        }
+    });
 });
 
 router.get('/signup', (req, res) => {
-    if (authMiddleware.jwtAuth) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('partials/signup');
+    jwt.verify(req.token, process.env.SECRET, (err, authData) => {
+        if (err) {
+            res.render('partials/signup');
+        } else {
+            res.json({
+                message: 'You are already logged in.',
+                authData
+            })
+            res.redirect('/');
+        }
+    });
 });
 
 module.exports = router;
