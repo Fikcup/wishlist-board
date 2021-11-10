@@ -1,7 +1,7 @@
 async function newUser(event) {
     event.preventDefault();
 
-    const username = document.querySelector('#username-signup').value.trim();
+    const username = document.querySelector('#username-signup').value.trim().toLowerCase();
     const password = document.querySelector('#password-signup').value.trim();
     const firstName = document.querySelector('#first-name-signup').value.trim();
     const lastName = document.querySelector('#last-name-signup').value.trim();
@@ -20,7 +20,7 @@ async function newUser(event) {
     })
 
     if (response.ok) {
-        res.redirect('/dashboard');
+        document.location.replace('/dashboard');
     }
 }
 
