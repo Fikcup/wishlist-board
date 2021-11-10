@@ -42,6 +42,9 @@ const userSchema = new Schema(
 );
 
 userSchema.pre('save', function(next) {
+    let user = this._doc.username;
+    this._doc.username = user.toLowerCase();
+
     let pwd = this._doc.userPassword;
     this._doc.userPassword = bcrypt.hashSync(pwd, 10);
     next();
@@ -53,6 +56,12 @@ userSchema.pre('findOneAndUpdate', function(next) {
     if (pwd) {
         modified.$set.userPassword = bcrypt.hashSync(pwd, 10);
     }
+
+    let user = modified.$set.username;
+    if (user) {
+        modified.$set.username = user.toLowerCase();
+    }
+
     next();
 });
 
