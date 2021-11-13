@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
+const { axios } = require('axios');
 const { Wishlist } = require('../models');
 
 router.get('/', async (req, res) => {
