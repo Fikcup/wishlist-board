@@ -1,3 +1,5 @@
+const { axios } = require('axios');
+
 async function newUser(event) {
     event.preventDefault();
 
@@ -13,15 +15,10 @@ async function newUser(event) {
         userLast: lastName
     };
 
-    const response = await fetch(`/api/users`, {
-        method: 'POST',
+    await axios.post(`/api/users`, {
         body: JSON.stringify(signupRequest),
         headers: { 'Content-Type': 'application/json'}
-    })
-
-    if (response.ok) {
-        document.location.replace('/dashboard');
-    }
+    });
 }
 
 const submit = document.querySelector('#signup-btn');
