@@ -1,20 +1,36 @@
+const { axios } = require('axios');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 module.exports = {
-    secret: process.env.SECRET,
     jwtAuth: function(req, res, next) {
-        const bearerHeader = req.headers['authorization'];
+        try {
+            var token;
 
-        if (typeof bearerHeader !== 'undefined') {
-            const bearer = tokenHeader.split(' ');
+            axios.get(`/api/auth`,
+                { 
+                    headers: {
+                        Authorization: token
+                    }
+                })
+                .then((tokenData) => {
+                    token = tokenData;
+                })
+                .catch((err) => {
+                    res.status(500).json(err);
+                });
 
-            const bearerToken = bearer[1];
+            var decoded = jwt.verify(token, process.env.SECRET);
 
-            req.token = bearerToken;
-
+            if (decoded !== null) {
+                next();
+            } else {
+                res.status(401).send({ message: "You are not logged in." });
+                next();
+            }
+        } catch (err) {
+            res.status(401).send({ message: "You are not logged in." });
             next();
-        } else {
-            res.sendStatus(403).json({ message: 'Your token is invalid.' });
         }
     }
-}
+};
