@@ -11,7 +11,10 @@ const {
 // /api/users
 router.route('/').get(getAllUsers).post(createUser);
 
+// /api/users/:username
+router.route('/:username').get(getOneUser);
+
 // /api/users/:userId
-router.route('/:userId').get(getOneUser).put(updateUser, authMiddleware.jwtAuth).delete(deleteUser, authMiddleware.jwtAuth);
+router.route('/:userId').put(updateUser, authMiddleware.jwtAuth).delete(deleteUser, authMiddleware.jwtAuth);
 
 module.exports = router;
