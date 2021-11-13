@@ -1,7 +1,5 @@
 const { User } = require('../models');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const authMiddleware = require('../middleware/auth');
 
 const userController = {
     // Users can find other registered users
@@ -18,7 +16,9 @@ const userController = {
     },
     // Users can search for a specific user
     getOneUser(req, res) {
-        User.findOne()
+        User.findOne({
+            username: req.params.username
+        })
             .select('-__v')
             .then((userData) => {
                 res.json(userData);
@@ -32,13 +32,9 @@ const userController = {
     createUser(req, res) {
         User.create(req.body)
             .then((userData) => {
-                var token = jwt.sign({ id: userData._id }, process.env.SECRET, {
-                    expiresIn: 86400
-                });
-                res.status(200).send({ auth: true, token: token});
+                res.json(userData);
             })
             .catch((err) => {
-                console.log(err);
                 res.status(500).json(err);
             });
     },
