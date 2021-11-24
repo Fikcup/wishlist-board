@@ -1,5 +1,3 @@
-const { axios } = require('axios');
-
 async function newUser(event) {
     event.preventDefault();
 
@@ -8,17 +6,20 @@ async function newUser(event) {
     const firstName = document.querySelector('#first-name-signup').value.trim();
     const lastName = document.querySelector('#last-name-signup').value.trim();
 
-    const signupRequest = {
+    await axios.post(`/api/users`, {
         username: username,
         userPassword: password,
         userFirst: firstName,
         userLast: lastName
-    };
-
-    await axios.post(`/api/users`, {
-        body: JSON.stringify(signupRequest),
-        headers: { 'Content-Type': 'application/json'}
-    });
+    })
+        .then((token) => {
+            if (token) {
+                localStorage.setItem('token', token.data);
+                window.location.assign('/dashboard');
+            } else {
+                alert('Your form data is incorrect. Please resubmit.');
+            }
+        });
 }
 
 const submit = document.querySelector('#signup-btn');
