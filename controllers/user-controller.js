@@ -7,6 +7,7 @@ const userController = {
     getAllUsers(req, res) {
         User.find()
             .select('-__v')
+            .select('userPassword')
             .then((userData) => {
                 res.json(userData);
             })
@@ -21,6 +22,7 @@ const userController = {
             username: req.params.username
         })
             .select('-__v')
+            .select('userPassword')
             .then((userData) => {
                 res.json(userData);
             })
@@ -34,16 +36,11 @@ const userController = {
             username: req.params.username
         })
             .select('-__v')
-            .select('userPassword')
             .then((userData) => {
-                if (!userData) {
-                    res.send('Your form data is invalid. Please try again.');
-                } else {
+                if (userData) {
                     if (bcrypt.compareSync(req.body.userPassword, userData.userPassword)) {
                         const token = jwt.sign({ id: userData.uuid }, process.env.SECRET)
                         res.json(token);
-                    } else {
-                        res.send('Your username or password is incorrect. Please try again.');
                     }
                 }
             })
@@ -56,10 +53,8 @@ const userController = {
     createUser(req, res) {
         User.create(req.body)
             .then((userData) => {
-                if (!userData) {
-                    res.send('Your form data is invalid. Please try again.');
-                } else {
-                    const token = jwt.sign({ id: userData.uuid }, process.env.SECRET)
+                if (userData) {
+                    const token = jwt.sign({ id: userData.uuid }, process.env.SECRET);
                     res.json(token);
                 }
             })
