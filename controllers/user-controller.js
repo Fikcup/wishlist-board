@@ -1,5 +1,6 @@
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const userController = {
     // Users can find other registered users
@@ -28,11 +29,39 @@ const userController = {
                 res.status(500).json(err);
             });
     },
+    loginUser(req, res) {
+        User.findOne({
+            username: req.params.username
+        })
+            .select('-__v')
+            .select('userPassword')
+            .then((userData) => {
+                if (!userData) {
+                    res.send('Your form data is invalid. Please try again.');
+                } else {
+                    if (bcrypt.compareSync(req.body.userPassword, userData.userPassword)) {
+                        const token = jwt.sign({ id: userData.uuid }, process.env.SECRET)
+                        res.json(token);
+                    } else {
+                        res.send('Your username or password is incorrect. Please try again.');
+                    }
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    },
     // Users can sign up for an account
     createUser(req, res) {
         User.create(req.body)
             .then((userData) => {
-                res.json(userData);
+                if (!userData) {
+                    res.send('Your form data is invalid. Please try again.');
+                } else {
+                    const token = jwt.sign({ id: userData.uuid }, process.env.SECRET)
+                    res.json(token);
+                }
             })
             .catch((err) => {
                 res.status(500).json(err);
