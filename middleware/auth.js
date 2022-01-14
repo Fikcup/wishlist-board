@@ -5,20 +5,7 @@ require('dotenv').config();
 module.exports = {
     jwtAuth: function(req, res, next) {
         try {
-            var token;
-
-            axios.get(`/api/auth`,
-                { 
-                    headers: {
-                        Authorization: token
-                    }
-                })
-                .then((tokenData) => {
-                    token = tokenData;
-                })
-                .catch((err) => {
-                    res.status(500).json(err);
-                });
+            const token = req.headers['Authorization'];
 
             var decoded = jwt.verify(token, process.env.SECRET);
 
