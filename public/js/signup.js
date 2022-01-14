@@ -1,3 +1,11 @@
+function onLoad() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        window.location.assign('/dashboard');
+    }
+}
+
 async function newUser(event) {
     event.preventDefault();
 
@@ -24,3 +32,4 @@ async function newUser(event) {
 
 const submit = document.querySelector('#signup-btn');
 submit.addEventListener('click', newUser);
+document.addEventListener("DOMContentLoaded", onLoad);
